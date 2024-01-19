@@ -1,6 +1,3 @@
-# ...
-# Revised by Parke Godfrey
-# 2017-09-11
 
 import sys
 import re
