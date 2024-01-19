@@ -4,6 +4,7 @@
 
 import sys
 import re
+import matplotlib.pyplot as plt
 
 # Function to check if a word is in stopwords-MySQL.txt
 def is_word_in_file(word, filename):
@@ -35,10 +36,18 @@ for line in sys.stdin:
                 my_dict[word.lower()] += 1
             else:
                 my_dict[word.lower()] = 1
-            #print(my_dict[word.lower()])
-            #print('%s\t%s' % (word.lower(), 1))
             
             
-for word, count in my_dict.items():
-    print(f'{word}\t{count}')
+# Sort the dictionary and get the top 10 words
+top_ten_words = sorted(my_dict.items(), key=lambda item: item[1], reverse=True)[:10]
+words, counts = zip(*top_ten_words)
+
+
+# Generate and display the bar chart
+plt.bar(words, counts)
+plt.xlabel('Words')
+plt.ylabel('Count')
+plt.title('Top Ten Words')
+plt.xticks(rotation=45)  # Rotate the word labels for better readability
+plt.show()
         
